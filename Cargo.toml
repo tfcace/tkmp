@@ -1,0 +1,32 @@
+[package]
+name = "tkmp"
+version = "0.1.0"
+edition = "2021"
+description = "A live markdown previewer for Rex: Mermaid diagrams and big-type headings via the kitty graphics protocol"
+license = "MIT"
+repository = "https://github.com/tfcace/tkmp"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+crossbeam-channel = "0.5"
+crossterm = "0.29"
+libc = "0.2"
+notify = "8"
+png = "0.17"
+pulldown-cmark = { version = "0.13", default-features = false }
+rayon = "1"
+resvg = { version = "0.45", default-features = false, features = ["text", "system-fonts", "memmap-fonts"] }
+rquickjs = "0.9"
+ttf-parser = "0.25"
+unicode-width = "0.2"
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev.package."*"]
+opt-level = 3
